@@ -4,7 +4,7 @@ import Navbar from "../Components/Navbar";
 import Loading from "../Components/Loading";
 import Markdowns from "../Components/Markdown";
 import BackendLoader from "../Components/BackendLoader";
-const backendurl = import.meta.env.VITE_BACKEND_URL;
+//const backendurl = import.meta.env.VITE_BACKEND_URL;
 
 function CodeAI() {
   const [code, setCode] = useState(``);
@@ -22,7 +22,7 @@ function CodeAI() {
     setDisplay(true);
     try {
       let res = await axios.post(
-        `${backendurl}ai/get-response`,
+        `https://backendai-4fe3.onrender.com/ai/get-response`,
         {
           code,
         }
@@ -43,7 +43,7 @@ function CodeAI() {
     const startWebsite = async () => {
       try {
         let response = await axios.get(
-          `${backendurl}`
+          `https://backendai-4fe3.onrender.com`
         );
         console.log(response.data);
         if (response.data.status === "ok") {
