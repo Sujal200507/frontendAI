@@ -24,6 +24,7 @@ function fetchData() {
         code,
       });
       console.log(response.data);
+      console.log("W");
       setreview(response.data);
     } catch (error) {
       console.error("Failed to get response:", error);
