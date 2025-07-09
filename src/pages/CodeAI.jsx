@@ -25,7 +25,7 @@ function CodeAI() {
     setDisplay(true);
     try {
       let res = await axios.post(
-        `https://aibackend-767o.onrender.com/ai/get-response`,
+        `https://newbackend-fwer.onrender.com//ai/get-response`,
         {
           code,
         }
@@ -53,7 +53,7 @@ function CodeAI() {
     const startWebsite = async () => {
       try {
         let response = await axios.get(
-          `https://aibackend-767o.onrender.com`
+          `https://newbackend-fwer.onrender.com/`
         );
         console.log(response.data);
         if (response.data.status === "ok") {

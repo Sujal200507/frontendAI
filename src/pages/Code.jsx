@@ -20,7 +20,7 @@ function fetchData() {
   const [review, setreview] = useState("");
   const ReviewCode = async () => {
     try {
-      let response = await axios.post(`https://aibackend-767o.onrender.com/ai/get-response`, {
+      let response = await axios.post(`https://newbackend-fwer.onrender.com//ai/get-response`, {
         code,
       });
       console.log(response.data);
