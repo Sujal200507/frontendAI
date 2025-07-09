@@ -12,9 +12,12 @@ function CodeAI() {
   const [response, setResponse] = useState("");
   const [display, setDisplay] = useState(false);
   const [isBackendReady, setIsBackendReady] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const responseAreaRef = useRef(null);
   const handleSubmit = async () => {
+    if (isSubmitting) return; // Prevent multiple rapid submissions
+    setIsSubmitting(true);
     if (responseAreaRef.current) {
       responseAreaRef.current.scrollIntoView({ behavior: "smooth" });
     }
@@ -31,8 +34,14 @@ function CodeAI() {
       setResponse(res.data);
       setLoading(false);
     } catch (error) {
-      console.error("Failed to get response:", error);
+      if (error.response && error.response.status === 429) {
+        setResponse("Too many requests. Please wait a moment and try again.");
+      } else {
+        setResponse("Failed to get response from server.");
+      }
       setLoading(false);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -104,6 +113,7 @@ function CodeAI() {
             <button
               onClick={handleSubmit}
               className="bg-[#0095ff] px-3 sm:px-4 cursor-pointer py-2 rounded-lg absolute bottom-2 sm:bottom-3 right-2 sm:right-3 hover:bg-[#1F6FEB] transition-colors duration-300"
+              disabled={isSubmitting || loading}
             >
               <i className="ri-arrow-up-line text-sm sm:text-base"></i>
             </button>
