@@ -33,6 +33,7 @@ function CodeAI() {
       // console.log(res.data);
       setResponse(res.data);
       setLoading(false);
+      console.log("Working")
     } catch (error) {
       if (error.response && error.response.status === 429) {
         setResponse("Too many requests. Please wait a moment and try again.");
